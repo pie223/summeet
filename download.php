@@ -6,7 +6,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
 // Put the real links here when you have them. While a link is empty, its button shows "link coming soon".
 $apkUrl    = '';   // direct download of the .apk file
 $fdroidUrl = '';   // the app's page on F-Droid
-$repoUrl   = '';   // the GitHub repository
+$repoUrl   = 'https://github.com/pie223/summeet ';   // the GitHub repository
 
 $pageTitle = 'Download';
 require __DIR__ . '/includes/header.php';
