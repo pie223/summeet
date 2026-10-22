@@ -117,11 +117,11 @@ require __DIR__ . '/includes/header.php';
             <div class="intent-toggle">
                 <label class="intent-option">
                     <input type="radio" name="intent" value="dating" <?= $user['intent'] === 'dating' ? 'checked' : '' ?>>
-                    <span>💞 Open to dating</span>
+                    <span><svg class="icon-line" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg> Open to dating</span>
                 </label>
                 <label class="intent-option">
                     <input type="radio" name="intent" value="meeting" <?= $user['intent'] === 'meeting' ? 'checked' : '' ?>>
-                    <span>🤝 Only meeting / hiking friends</span>
+                    <span><svg class="icon-line" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M2.5 20a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15 14.2A5 5 0 0 1 21.5 20"/></svg> Only meeting / hiking friends</span>
                 </label>
             </div>
         </div>
@@ -148,7 +148,7 @@ require __DIR__ . '/includes/header.php';
                             <option value="<?= $n ?>" <?= (string) $cakeSaved[$i - 1] === (string) $n ? 'selected' : '' ?>><?= $n ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <span>🍰 <?= h($cakeName) ?></span>
+                    <span><?= h($cakeName) ?></span>
                 </div>
             <?php endforeach; ?>
             <label for="cake_why" style="margin-top:.8rem;">Why? <span class="muted small">(optional)</span></label>
@@ -159,7 +159,7 @@ require __DIR__ . '/includes/header.php';
     </form>
 
     <details <?= ($_POST['action'] ?? '') === 'delete_account' ? 'open' : '' ?> style="margin-top:2rem; padding-top:1rem; border-top:1px solid var(--border);">
-        <summary style="cursor:pointer; color:var(--danger); font-weight:600;">Delete my account</summary>
+        <summary style="cursor:pointer; color:var(--mtn-back); font-weight:600;">Delete my account</summary>
         <form method="post" class="form" style="margin-top:1rem;"
               onsubmit="return confirm('Delete your account for good? This cannot be undone.');">
             <p class="muted small">This permanently deletes your profile, <strong>all the hikes you proposed</strong> (with their requests and group chats), your join requests and your chat messages. It cannot be undone.</p>

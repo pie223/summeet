@@ -67,8 +67,7 @@ $flash = flash_get();
         <?php else: ?>
         <nav class="mainnav">
             <a href="download.php" class="<?= basename($_SERVER['PHP_SELF']) === 'download.php' ? 'active' : '' ?>">Download</a>
-            <a href="login.php">Log in</a>
-            <a href="register.php" class="btn btn-primary btn-sm">Sign up</a>
+            <a href="login.php" class="btn btn-primary btn-sm">Log in</a>
         </nav>
         <?php endif; ?>
     </div>

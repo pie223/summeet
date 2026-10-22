@@ -460,6 +460,9 @@ code {
     .topbar.open .navuser { display: flex; flex: 0 0 100%; order: 4; padding-top: 0.6rem; border-top: 1px solid var(--forest-light); }
 }
 
+/* Small line icons next to labels (profile page, sign-up): same green as the landing page icons */
+.icon-line { color: var(--mtn-back); vertical-align: -0.28em; margin-right: 0.25rem; }
+
 /* Landing-page mountain colours (used by the SVG in index.php) */
 .mtn-back  { fill: var(--mtn-back); }
 .mtn-front { fill: var(--mtn-front); }
@@ -565,7 +568,7 @@ code {
 @media (max-width: 780px) {
     /* 16px inputs stop phones from zooming the page when you tap a field */
     input, select, textarea { font-size: 16px; }
-    .btn { min-height: 44px; }
+    .btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; text-align: center; }
     .btn-sm { min-height: 40px; }
     .topbar.open .mainnav-menu a { padding: 0.35rem 0; }
     .card, .auth-card { padding: 1.2rem; }
