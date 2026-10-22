@@ -1,8 +1,0 @@
-# The settings folder is only for PHP: block direct downloads of db.php and the other files in it.
-<IfModule mod_authz_core.c>
-    Require all denied
-</IfModule>
-<IfModule !mod_authz_core.c>
-    Order allow,deny
-    Deny from all
-</IfModule>
