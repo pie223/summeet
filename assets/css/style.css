@@ -1,0 +1,575 @@
+/* Summeet — mountain-themed styling */
+
+:root {
+    /* ===== PALETTE: Forest & Blush — change colours HERE only ===== */
+    --forest: #2c463f;        /* deep forest: navbar, headings, route lines */
+    --forest-light: #3a5a52;  /* pine: secondary green */
+    --accent: #ff69b4;        /* hotpink: buttons, navbar triangle, mountain tip */
+    --accent-hover: #ff4fa5;
+    --button: #f4c15c;        /* primary buttons (Join Summeet, Create your profile...) */
+    --button-hover: #eab249;
+    --accent-soft: #fde6f1;   /* pale pink backgrounds */
+    --accent-ink: #a1306b;    /* text on pale pink */
+    --peach: #ffd9c9;
+    --peach-strong: #ffb88c;  /* the sun */
+    --cream: #fff4ec;         /* notices / warnings background */
+    --cream-border: #ffd9c9;
+    --cream-ink: #7a4a2a;
+    --cream-ink-strong: #5c3118;
+    --pending-bg: #ffe6d6;
+    --pending-ink: #a0552b;
+    --sky: #eaf3ee;           /* mint */
+    --soft: #eef2ef;          /* subtle grey-green panels */
+    --bg: #f7f9f7;           /* page background */
+    --ink: #1f2a26;
+    --muted: #6b7a74;
+    --nav-link: #d9e6df;
+    --card-bg: #ffffff;
+    --border: #e1e8e3;
+    --danger: #c0453a;
+    --success: #3a7d5c;
+    --shadow: 0 2px 10px rgba(31, 42, 38, 0.08);
+
+    /* Landing-page mountain */
+    --mtn-back: var(--forest-light);
+    --mtn-front: var(--forest);
+    --mtn-tip: var(--accent);
+    --sun: var(--button);
+
+    /* Maps (read by JavaScript on the hike pages) */
+    --map-line: var(--forest);
+    --map-outline: var(--forest);
+    --map-start: var(--success);
+    --map-end: var(--danger);
+    --map-mid: var(--accent);
+    --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a { color: var(--forest); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap {
+    flex: 1 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+}
+
+/* Top bar */
+.topbar {
+    background: var(--forest);
+    color: white;
+}
+.topbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.9rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.brand {
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+.brand:hover { text-decoration: none; opacity: 0.9; }
+.brand-mark { color: var(--accent); }
+.mainnav {
+    display: flex;
+    gap: 1.1rem;
+    flex: 1;
+    align-items: center;
+}
+/* Logged-out navbar: Log in / Join Summeet sit at the far right */
+.topbar-inner > .mainnav:last-child { justify-content: flex-end; }
+.mainnav a { color: var(--nav-link); font-weight: 500; }
+.mainnav a.active, .mainnav a:hover { color: white; }
+.mainnav a.btn-primary, .mainnav a.btn-primary:hover { color: var(--ink); background: var(--button); }
+.mainnav a.btn-primary:hover { background: var(--button-hover); }
+.navuser {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--nav-link);
+    font-size: 0.9rem;
+}
+.navuser-name { font-weight: 600; color: white; text-decoration: none; }
+.navuser-name:hover, .navuser-name.active { text-decoration: underline; }
+
+/* ☰ button (only shown on phones, see the media query below) */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--forest-light);
+    border-radius: 8px;
+    color: white;
+    font-size: 1.3rem;
+    line-height: 1;
+    padding: 0.35rem 0.65rem;
+    cursor: pointer;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 999px;
+    padding: 0.55rem 1.1rem;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    text-align: center;
+}
+.btn:hover { text-decoration: none; }
+.btn-primary { background: var(--button); color: var(--ink); }
+.btn-primary:hover { background: var(--button-hover); }
+.btn-ghost { background: transparent; color: var(--forest); border: 1.5px solid var(--border); }
+.btn-ghost:hover { background: var(--soft); }
+.topbar .btn-ghost { color: white; border-color: rgba(255,255,255,0.35); }
+.topbar .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+.btn-danger { background: #fbe4e1; color: var(--danger); }
+.btn-danger:hover { background: #f7d0cb; }
+.btn-lg { padding: 0.8rem 1.6rem; font-size: 1rem; }
+.btn-sm { padding: 0.35rem 0.8rem; font-size: 0.82rem; }
+.btn-block { width: 100%; }
+
+/* Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 2rem 0 3rem;
+    flex-wrap: wrap;
+}
+.hero-text { flex: 1 1 380px; }
+.hero-text h1 { font-size: 2.6rem; line-height: 1.15; margin: 0 0 1rem; }
+.hero-sub { color: var(--muted); font-size: 1.05rem; max-width: 46ch; }
+.hero-actions { display: flex; gap: 0.8rem; margin: 1.5rem 0 1rem; flex-wrap: wrap; }
+.hero-hint { font-size: 0.85rem; color: var(--muted); }
+.hero-art { flex: 1 1 300px; max-width: 420px; }
+.hero-art svg { width: 100%; height: auto; border-radius: var(--radius); }
+
+.safety-note {
+    background: var(--cream);
+    color: var(--cream-ink);
+    border: 1px solid var(--cream-border);
+    border-radius: var(--radius);
+    padding: 1rem 1.3rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin: 0 0 1.6rem;
+}
+.safety-note strong { color: var(--cream-ink-strong); }
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1rem;
+}.feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+}
+.feature-card { text-align: center; }
+/* Line icons use the lighter green of the back mountain */
+.feature-icon { color: var(--mtn-back); margin: 0.2rem 0 0.8rem; display: flex; justify-content: center; }
+.feature-icon svg { display: block; stroke-width: 1.8; }
+.feature-card h3 { margin: 0 0 0.5rem; }
+.feature-card p { color: var(--muted); font-size: 0.92rem; margin: 0; text-align: justify; hyphens: auto; }
+
+/* Cards / forms */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.6rem;
+    margin-bottom: 1.2rem;
+}
+.card h2 { margin-top: 0; font-size: 1.1rem; }
+.card-narrow, .auth-card { max-width: 640px; margin-left: auto; margin-right: auto; }
+.auth-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+}
+.auth-card-narrow { max-width: 420px; }
+
+.form-group { margin-bottom: 1.1rem; }
+.form-row.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.35rem; }
+input[type=text], input[type=password], input[type=number], input[type=date],
+select, textarea {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: white;
+    color: var(--ink);
+}
+textarea { resize: vertical; }
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--forest-light);
+}
+.field-hint { font-size: 0.8rem; color: var(--muted); margin: 0.3rem 0 0; }
+
+/* Intent toggle */
+.intent-toggle { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+.intent-option {
+    flex: 1 1 200px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+    cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.intent-option input { width: auto; margin: 0; }
+.intent-option:has(input:checked) {
+    border-color: var(--forest);
+    background: var(--soft);
+}
+
+/* Political slider */
+.slider-wrap { padding: 0.4rem 0.2rem 0; }
+input[type=range] {
+    width: 100%;
+    accent-color: var(--forest);
+}
+.slider-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+}
+.slider-readout { font-size: 0.9rem; margin: 0.6rem 0 0; }
+.slider-readout strong { color: var(--forest); }
+
+/* Flash messages */
+.flash {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    font-size: 0.92rem;
+}
+.flash ul { margin: 0; padding-left: 1.2rem; }
+.flash-success { background: #e4f3ea; color: var(--success); }
+.flash-error { background: #fbe4e1; color: var(--danger); }
+.flash-info { background: #eaf1fb; color: #2b5a8a; }
+
+/* Hikes grid */
+.page-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; gap: 0.7rem; }
+.page-head h1 { margin: 0; }
+
+.filters { display: flex; gap: 0.7rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.filters input[type=text] { flex: 1 1 260px; }
+.filters select { flex: 0 0 180px; }
+
+/* View toggle (list/map) */
+.view-toggle {
+    display: inline-flex;
+    background: var(--soft);
+    border-radius: 999px;
+    padding: 0.25rem;
+    margin-bottom: 1.3rem;
+    gap: 0.2rem;
+}
+.view-toggle-btn {
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--forest);
+}
+.view-toggle-btn:hover { text-decoration: none; }
+.view-toggle-btn.active { background: white; box-shadow: var(--shadow); }
+
+/* Maps */
+.map-box {
+    width: 100%;
+    height: 320px;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    background: var(--soft);
+}
+.map-box-lg { height: 520px; }
+.map-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    background: var(--soft);
+    border-radius: var(--radius);
+}
+.map-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.hike-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.1rem;
+}
+.hike-card {
+    display: block;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    color: var(--ink);
+    box-shadow: var(--shadow);
+}
+.hike-card:hover { text-decoration: none; border-color: var(--forest-light); }
+.hike-card h3 { margin: 0.5rem 0 0.3rem; font-size: 1.1rem; }
+.hike-card-top { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
+.hike-date { color: var(--muted); }
+.hike-mountain { color: var(--forest); font-weight: 600; font-size: 0.9rem; margin: 0 0 0.5rem; }
+.hike-desc { color: var(--muted); font-size: 0.88rem; margin: 0 0 0.8rem; }
+.hike-card-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; padding-top: 0.6rem; border-top: 1px solid var(--border); }
+.hike-organizer { color: var(--muted); }
+.hike-spots { font-weight: 700; color: var(--success); }
+.hike-spots.spots-full { color: var(--danger); }
+
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.badge-easy { background: #e4f3ea; color: var(--success); }
+.badge-moderate { background: var(--pending-bg); color: var(--pending-ink); }
+.badge-hard { background: #fbe4e1; color: var(--danger); }
+.badge-extreme { background: #2c1c1a; color: #ffb4a3; }
+
+.empty-state { text-align: center; padding: 3rem 1rem; color: var(--muted); }
+
+/* Hike detail */
+.hike-detail { display: grid; grid-template-columns: 2fr 1fr; gap: 1.2rem; align-items: start; }
+.hike-detail-side { display: flex; flex-direction: column; gap: 1.2rem; }
+.hike-full-desc { white-space: pre-line; color: var(--ink); }
+.hike-meta-row { display: flex; gap: 1.5rem; margin: 1.2rem 0; padding: 1rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.hike-meta-item { display: flex; flex-direction: column; }
+.hike-meta-item strong { font-size: 1.2rem; }
+.hike-meta-item span { font-size: 0.78rem; color: var(--muted); }
+
+.join-box { margin-top: 1rem; }
+.status-line { font-weight: 600; padding: 0.7rem 1rem; border-radius: 8px; margin-bottom: 0.7rem; }
+.status-line.status-pending { background: var(--pending-bg); color: var(--pending-ink); }
+.status-line.status-approved { background: #e4f3ea; color: var(--success); }
+
+.status-pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+}
+.status-pending { background: var(--pending-bg); color: var(--pending-ink); }
+.status-approved { background: #e4f3ea; color: var(--success); }
+.status-rejected { background: #f1f1f1; color: var(--muted); }
+.status-withdrawn { background: #f1f1f1; color: var(--muted); }
+
+.mini-profile { display: flex; gap: 0.7rem; align-items: flex-start; text-decoration: none; color: inherit; margin-bottom: 0.5rem; }
+.tag-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin: 0.3rem 0; }
+.tag {
+    background: var(--soft);
+    color: var(--forest);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+}
+.tag-political { background: var(--accent-soft); color: var(--accent-ink); }
+
+.request-list { list-style: none; padding: 0; margin: 0; }
+.request-item { padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
+.request-item:last-child { border-bottom: none; }
+.request-message { font-style: italic; color: var(--muted); font-size: 0.88rem; margin: 0.3rem 0; }
+.request-actions { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+
+.mini-list { list-style: none; padding: 0; margin: 0; }
+.mini-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.15rem; }
+.mini-list li:last-child { border-bottom: none; }
+
+/* Profile layout */
+.profile-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 1.2rem; align-items: start; }
+.profile-side { display: flex; flex-direction: column; gap: 1.2rem; }
+
+.muted { color: var(--muted); }
+.small { font-size: 0.85rem; }
+code {
+    background: var(--soft);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+.sitefooter { flex-shrink: 0; text-align: center; color: var(--muted); font-size: 0.85rem; padding: 2rem 0; }
+
+@media (max-width: 780px) {
+    .hero { flex-direction: column; }
+    .form-row.two-col { grid-template-columns: 1fr; }
+    .hike-detail, .profile-layout { grid-template-columns: 1fr; }
+    /* Phone navbar: logged-in links collapse behind the ☰ button */
+    .topbar-inner { flex-wrap: wrap; justify-content: space-between; gap: 0.6rem 1rem; }
+    .nav-toggle { display: block; }
+    .mainnav-menu, .navuser { display: none; }
+    .topbar.open .mainnav-menu { display: flex; flex-direction: column; align-items: flex-start; gap: 0.9rem; flex: 0 0 100%; order: 3; padding-top: 0.4rem; }
+    .topbar.open .navuser { display: flex; flex: 0 0 100%; order: 4; padding-top: 0.6rem; border-top: 1px solid var(--forest-light); }
+}
+
+/* Landing-page mountain colours (used by the SVG in index.php) */
+.mtn-back  { fill: var(--mtn-back); }
+.mtn-front { fill: var(--mtn-front); }
+.mtn-tip   { fill: var(--mtn-tip); }
+.mtn-sun   { fill: var(--sun); }
+
+/* Horseshoe political slider (includes/horseshoe_slider.php + main.js) */
+.horseshoe { max-width: 340px; margin: 0 auto; }
+.horseshoe-svg { width: 100%; height: auto; display: block; touch-action: none; user-select: none; -moz-user-select: none; -webkit-user-select: none; cursor: pointer; outline: none; }
+.horseshoe-track { fill: none; stroke: var(--border); stroke-width: 12; stroke-linecap: round; }
+.horseshoe-tick { fill: var(--forest-light); pointer-events: none; }
+.horseshoe-label { font-size: 11px; fill: var(--muted); pointer-events: none; }
+.horseshoe-handle { fill: var(--accent); stroke: #fff; stroke-width: 2; cursor: grab; filter: drop-shadow(0 1px 2px rgba(31,42,38,.35)); }
+.horseshoe-svg:active .horseshoe-handle { cursor: grabbing; }
+.horseshoe-svg:focus-visible .horseshoe-handle { stroke: var(--forest); stroke-width: 2.5; }
+.horseshoe .slider-readout { text-align: center; }
+
+/* Navbar notification badge (pending requests) */
+.nav-badge {
+    display: inline-block;
+    min-width: 1.4em;
+    margin-left: 0.4em;
+    padding: 0.05em 0.45em;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--ink);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Group chat (chat.php) */
+.chat-list { list-style: none; padding: 0; margin: 0; }
+.chat-list li { border-bottom: 1px solid var(--border); }
+.chat-list li:last-child { border-bottom: none; }
+.chat-list a { display: block; padding: 0.9rem 0; color: var(--ink); }
+.chat-list a:hover { text-decoration: none; background: var(--soft); }
+.chat-list .chat-list-title { font-weight: 700; }
+.chat-head h1 { margin: 0.2rem 0 0.2rem; }
+.chat-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 1.2rem; align-items: start; }
+.chat-log {
+    height: 420px;
+    overflow-y: auto;
+    padding: 0.4rem 0.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.chat-log-lg { height: 520px; }
+.chat-empty { color: var(--muted); text-align: center; margin: auto; font-size: 0.9rem; }
+.chat-msg { max-width: 80%; align-self: flex-start; }
+.chat-msg.mine { align-self: flex-end; text-align: right; }
+.chat-meta { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.15rem; }
+.chat-bubble {
+    display: inline-block;
+    text-align: left;
+    padding: 0.5rem 0.8rem;
+    border-radius: 14px;
+    background: var(--soft);
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+.chat-msg.mine .chat-bubble { background: var(--accent-soft); }
+.chat-form { display: flex; gap: 0.6rem; margin-top: 0.8rem; }
+.chat-form input[type=text] { flex: 1; }
+@media (max-width: 780px) { .chat-layout { grid-template-columns: 1fr; } }
+
+.chat-members { list-style: none; padding: 0; margin: 0 0 0.8rem; }
+.chat-members li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+.chat-members li:last-child { border-bottom: none; }
+
+.nav-badge[hidden] { display: none; }
+.mainnav a { position: relative; }
+/* "Chats" badge floats small above the word, like a superscript */
+.nav-badge-top {
+    position: absolute;
+    top: -0.9em;
+    right: -1.3em;
+    margin: 0;
+    min-width: 1.35em;
+    padding: 0 0.35em;
+    font-size: 0.65rem;
+    line-height: 1.5;
+}
+
+/* Unread count next to a conversation in the chats list */
+.chat-unread { margin-left: .5rem; vertical-align: middle; }
+
+/* ---- Phones and touch screens ---- */
+/* Maps and chats follow the screen height instead of a fixed size, so they never push the page off-screen */
+.map-box    { height: min(320px, 55vh); }
+.map-box-lg { height: min(520px, 65vh); }
+.chat-log    { height: min(420px, 55vh); }
+.chat-log-lg { height: min(520px, 65vh); }
+@supports (height: 1dvh) {          /* dvh = visible height, even with the on-screen keyboard */
+    .map-box    { height: min(320px, 55dvh); }
+    .map-box-lg { height: min(520px, 65dvh); }
+    .chat-log    { height: min(420px, 55dvh); }
+    .chat-log-lg { height: min(520px, 65dvh); }
+}
+@media (max-width: 780px) {
+    /* 16px inputs stop phones from zooming the page when you tap a field */
+    input, select, textarea { font-size: 16px; }
+    .btn { min-height: 44px; }
+    .btn-sm { min-height: 40px; }
+    .topbar.open .mainnav-menu a { padding: 0.35rem 0; }
+    .card, .auth-card { padding: 1.2rem; }
+}
+@media (pointer: coarse) {
+    .horseshoe-handle { r: 13; }
+}
