@@ -36,8 +36,8 @@ function seed_demo_data(PDO $pdo): void
     ];
 
     $hikes = [
-        [$ids['marta_trails'], '(Demo) Sunrise ridge walk', 'Monte Bianco foothills', 'Aosta Valley, IT', 'Early start to catch the sunrise from the ridge, easy pace back down. Bring layers, it is cold at the top.', 'moderate', date('Y-m-d', strtotime('+9 days')), 3, 4, json_encode($routes['sunrise'])],
-        [$ids['leo_summits'], '(Demo) Fast & light scramble', 'Gran Paradiso', 'Aosta Valley, IT', 'Looking for 1-2 people who can move quickly. Some exposed scrambling near the top, helmets recommended.', 'hard', date('Y-m-d', strtotime('+14 days')), 3, 3, json_encode($routes['scramble'])],
+        [$ids['marta_trails'], '(Demo) Sunrise ridge walk', 'Monte Bianco foothills', 'Aosta Valley, IT', 'Steep pre-dawn climb to catch the sunrise from the ridge, then a long day out. Good fitness needed. Bring layers, it is cold at the top.', 'hard', date('Y-m-d', strtotime('+9 days')), 3, 4, json_encode($routes['sunrise'])],
+        [$ids['leo_summits'], '(Demo) Fast & light scramble', 'Gran Paradiso', 'Aosta Valley, IT', 'Looking for 1-2 people who can keep a brisk pace. Short, easy scrambling near the top, nothing technical.', 'moderate', date('Y-m-d', strtotime('+14 days')), 3, 3, json_encode($routes['scramble'])],
         [$ids['sofia_w'], '(Demo) Easy lake loop + picnic', 'Lago di Braies area', 'South Tyrol, IT', 'Flat, scenic, and slow. Perfect if you want conversation more than a workout. Picnic halfway.', 'easy', date('Y-m-d', strtotime('+5 days')), 3, 6, json_encode($routes['lake_loop'])],
         [$ids['dan_ridge'], '(Demo) Two-day traverse', 'Dolomiti di Sesto', 'South Tyrol, IT', 'Overnight in a rifugio, full traverse the next morning. Need people comfortable with multi-day gear.', 'hard', date('Y-m-d', strtotime('+21 days')), 3, 5, json_encode($routes['traverse'])],
         [$ids['iris_vega'], '(Demo) Wildflower wander', 'Parco Nazionale Gran Paradiso', 'Piedmont, IT', 'Slow botanical hike, lots of stops. Great for a first date-ish kind of hike or just a calm morning.', 'easy', date('Y-m-d', strtotime('+7 days')), 3, 4, json_encode($routes['wildflower'])],
