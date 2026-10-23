@@ -15,8 +15,7 @@ require __DIR__ . '/includes/header.php';
         <h1>Meet at the peak</h1>
         <p class="hero-sub">
             Summeet is a dating&amp;meeting app, but instead of the bar you hit the mountain.
-            No profile swiping -check the hikes available, request a spot if you want to join
-            or propose one yourself.
+            No profile swiping, no algorithm choosing for you, no money to pay to some company.
         </p>
         <div class="hero-actions">
             <?php if ($user): ?>

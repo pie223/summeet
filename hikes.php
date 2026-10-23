@@ -45,7 +45,7 @@ if ($hikes) {
     foreach ($q->fetchAll() as $row) $approvedByHike[(int) $row['hike_id']] = (int) $row['c'];
 }
 $spotsFor = function (array $h) use ($approvedByHike): array {
-    $approved = $approvedByHike[(int) $h['id']] ?? 0;
+    $approved = ($approvedByHike[(int) $h['id']] ?? 0) + 1;   // +1: the organizer is always the first participant
     $max = (int) $h['max_participants'];
     return ['approved' => $approved, 'remaining' => max(0, $max - $approved), 'full' => $approved >= $max];
 };

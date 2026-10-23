@@ -150,7 +150,7 @@ function hike_spots(PDO $pdo, int $hikeId, int $max): array
 {
     $stmt = $pdo->prepare("SELECT COUNT(*) AS c FROM hike_requests WHERE hike_id = ? AND status = 'approved'");
     $stmt->execute([$hikeId]);
-    $approved = (int) $stmt->fetch()['c'];
+    $approved = (int) $stmt->fetch()['c'] + 1;   // +1: the organizer is always the first participant
     return [
         'approved' => $approved,
         'remaining' => max(0, $max - $approved),
