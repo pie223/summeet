@@ -31,6 +31,7 @@ $linkButton = function (string $label, string $url, bool $primary): void {
         <?php $linkButton('⬇️ Download the APK', $apkUrl, true); ?>
         <?php $linkButton('📱 Get it on F-Droid', $fdroidUrl, false); ?>
     </p>
+    <p class="muted small" style="margin-bottom:0;">We don't surrender to Google Play. <a href="https://keepandroidopen.org/" rel="noopener">Here</a> is one of the many reasons why you can't download us there.</p>
 </section>
 
 <section class="card card-narrow">
