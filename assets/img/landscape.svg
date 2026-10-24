@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <title>Summeet landscape: mountains, pink peak and sun</title>
+  <polygon points="0,400 120,180 220,320 306,150 420,400" fill="#3a5a52"/>
+  <polygon points="150,400 320,120 470,400" fill="#2c463f"/>
+  <polygon points="320,120 298.8,155 338.6,155" fill="#ff69b4"/>
+  <circle cx="500" cy="80" r="40" fill="#f4c15c"/>
+</svg>
