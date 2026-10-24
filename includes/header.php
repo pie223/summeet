@@ -80,6 +80,37 @@ $flash = flash_get();
         <?php endif; ?>
     </div>
 </header>
+<?php if (in_app()): ?>
+<div class="update-banner" id="update-banner" hidden>
+    <span>A new version of Summeet is available.</span>
+    <a href="https://github.com/pie223/summeet/releases/latest/download/summeet.apk" class="btn btn-sm">Download</a>
+    <button type="button" class="update-close" id="update-close" aria-label="Close">&times;</button>
+</div>
+<script>
+// Asks GitHub for the newest release and compares it with the version this app announces.
+(function () {
+    var mine = <?= json_encode(app_version() ?: '0') ?>;
+    var bar = document.getElementById('update-banner');
+    try { if (sessionStorage.getItem('updateClosed')) { return; } } catch (e) {}
+    function newer(a, b) {                       // is version a newer than b?
+        a = String(a).replace(/^v/i, '').split('.'); b = String(b).replace(/^v/i, '').split('.');
+        for (var i = 0; i < Math.max(a.length, b.length); i++) {
+            var x = parseInt(a[i] || 0, 10), y = parseInt(b[i] || 0, 10);
+            if (x !== y) { return x > y; }
+        }
+        return false;
+    }
+    document.getElementById('update-close').addEventListener('click', function () {
+        bar.hidden = true;
+        try { sessionStorage.setItem('updateClosed', '1'); } catch (e) {}
+    });
+    fetch('https://api.github.com/repos/pie223/summeet/releases/latest')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { if (d && d.tag_name && newer(d.tag_name, mine)) { bar.hidden = false; } })
+        .catch(function () {});
+})();
+</script>
+<?php endif; ?>
 <?php if ($user): ?>
 <script>
 // Phone menu: the ☰ button opens and closes the navbar links.

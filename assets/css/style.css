@@ -576,3 +576,9 @@ code {
 @media (pointer: coarse) {
     .horseshoe-handle { r: 13; }
 }
+
+/* "Update available" banner (shown only inside the Android app) */
+.update-banner { display: flex; align-items: center; justify-content: center; gap: 0.8rem; flex-wrap: wrap; padding: 0.6rem 1rem; background: var(--button); color: var(--forest); font-weight: 600; }
+.update-banner[hidden] { display: none; }
+.update-banner .btn { background: var(--forest); color: #fff; }
+.update-close { background: none; border: 0; color: var(--forest); font-size: 1.4rem; line-height: 1; cursor: pointer; }
