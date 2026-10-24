@@ -2,6 +2,7 @@
   "appId": "io.github.pie223.summeet",
   "appName": "Summeet",
   "webDir": "www",
+  "appendUserAgent": "SummeetApp/1.0.0",
   "server": {
     "url": "https://summeet.altervista.org/"
   }
