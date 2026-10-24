@@ -199,3 +199,40 @@ function in_app(): bool
     $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
     return stripos($ua, '; wv)') !== false || stripos($ua, 'SummeetApp') !== false;
 }
+
+/** The app version the Android app announces in its browser identification ("SummeetApp/1.0.1"), or '' if unknown. */
+function app_version(): string
+{
+    $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+    return preg_match('~SummeetApp/([0-9]+(?:\.[0-9]+)*)~', $ua, $m) ? $m[1] : '';
+}
+
+/**
+ * The newest release published on GitHub: ['tag' => '1.0.1', 'version' => '1.0.1'] or null if it can't be read.
+ * The answer is kept in a small file for a few hours, so pages never wait for GitHub.
+ */
+function latest_release(): ?array
+{
+    $repo  = 'pie223/summeet';
+    $cache = sys_get_temp_dir() . '/summeet_latest_release.json';
+    $saved = is_file($cache) ? json_decode((string) @file_get_contents($cache), true) : null;
+    if (is_array($saved) && isset($saved['time']) && $saved['time'] > time() - (empty($saved['tag']) ? 600 : 6 * 3600)) {
+        return empty($saved['tag']) ? null : ['tag' => $saved['tag'], 'version' => ltrim($saved['tag'], 'vV')];
+    }
+    $tag = '';
+    $url = 'https://api.github.com/repos/' . $repo . '/releases/latest';
+    $ctx = stream_context_create(['http' => ['timeout' => 3, 'header' => "User-Agent: Summeet\r\nAccept: application/vnd.github+json\r\n"]]);
+    $raw = @file_get_contents($url, false, $ctx);
+    if ($raw === false && function_exists('curl_init')) {
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 3, CURLOPT_USERAGENT => 'Summeet']);
+        $raw = curl_exec($ch);
+        curl_close($ch);
+    }
+    $data = $raw ? json_decode($raw, true) : null;
+    if (is_array($data) && !empty($data['tag_name'])) {
+        $tag = (string) $data['tag_name'];
+    }
+    @file_put_contents($cache, json_encode(['time' => time(), 'tag' => $tag]));
+    return $tag === '' ? null : ['tag' => $tag, 'version' => ltrim($tag, 'vV')];
+}
