@@ -1,5 +1,8 @@
 {
   "appId": "io.github.pie223.summeet",
   "appName": "Summeet",
-  "webDir": "www"
+  "webDir": "www",
+  "server": {
+    "url": "https://summeet.altervista.org/"
+  }
 }
