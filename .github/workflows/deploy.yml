@@ -31,5 +31,9 @@ jobs:
             .github/**
             config/db.php
             README.md
-            whereami.php
-            demoAccountsCredentials.md
+            credentials.md
+            android/**
+            www/**
+            package.json
+            package-lock.json
+            capacitor.config.json
