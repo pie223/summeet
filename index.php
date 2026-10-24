@@ -25,9 +25,7 @@ require __DIR__ . '/includes/header.php';
                 <a href="register.php" class="btn btn-primary btn-lg">Create your profile</a>
                 <a href="login.php" class="btn btn-ghost btn-lg">I already have an account</a>
             <?php endif; ?>
-            <?php if (!in_app()): ?>
             <a href="download.php" class="btn btn-ghost btn-lg">Download</a>
-            <?php endif; ?>
             <a href="feedback.php" class="btn btn-ghost btn-lg">Feedback &amp; report</a>
         </div>
     </div>
