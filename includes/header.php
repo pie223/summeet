@@ -62,7 +62,9 @@ $flash = flash_get();
             <a href="chat.php" class="<?= basename($_SERVER['PHP_SELF']) === 'chat.php' ? 'active' : '' ?>">Chats<span class="nav-badge nav-badge-top" id="nav-badge-chats" title="New messages"<?= $unreadChats > 0 ? '' : ' hidden' ?>><?= $unreadChats > 99 ? '99+' : $unreadChats ?></span></a>
             <a href="community.php" class="<?= basename($_SERVER['PHP_SELF']) === 'community.php' ? 'active' : '' ?>">Community</a>
             <a href="feedback.php" class="<?= basename($_SERVER['PHP_SELF']) === 'feedback.php' ? 'active' : '' ?>">Feedback</a>
+            <?php if (!in_app()): ?>
             <a href="download.php" class="<?= basename($_SERVER['PHP_SELF']) === 'download.php' ? 'active' : '' ?>">Download</a>
+            <?php endif; ?>
         </nav>
         <div class="navuser">
             <a href="profile.php" class="navuser-name<?= basename($_SERVER['PHP_SELF']) === 'profile.php' ? ' active' : '' ?>" title="Your profile"><?= h($user['display_name']) ?></a>
@@ -70,7 +72,9 @@ $flash = flash_get();
         </div>
         <?php else: ?>
         <nav class="mainnav">
+            <?php if (!in_app()): ?>
             <a href="download.php" class="<?= basename($_SERVER['PHP_SELF']) === 'download.php' ? 'active' : '' ?>">Download</a>
+            <?php endif; ?>
             <a href="login.php" class="btn btn-primary btn-sm">Log in</a>
         </nav>
         <?php endif; ?>

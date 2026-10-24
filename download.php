@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/includes/bootstrap.php';
 
+// Inside the Android app there is nothing to download: go to the main page instead.
+if (in_app()) {
+    redirect('index.php');
+}
+
 /** Download page: the Android app and the open-source code. Open to everyone (logged in or not). */
 
 // Put the real links here when you have them. While a link is empty, its button shows "link coming soon".

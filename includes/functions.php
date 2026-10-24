@@ -180,3 +180,22 @@ function flash_get(): ?array
     unset($_SESSION['flash']);
     return $f;
 }
+
+/**
+ * True when the site is being shown inside the Summeet Android app (so the "Download" links,
+ * which make no sense there, can be hidden). It recognises:
+ *  - Android WebView (its browser identification contains "; wv)"),
+ *  - an app that adds the word "SummeetApp" to its browser identification,
+ *  - an app whose start address ends with ?app=1 (remembered for the rest of the visit).
+ */
+function in_app(): bool
+{
+    if (isset($_GET['app'])) {
+        $_SESSION['in_app'] = $_GET['app'] === '1';
+    }
+    if (!empty($_SESSION['in_app'])) {
+        return true;
+    }
+    $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+    return stripos($ua, '; wv)') !== false || stripos($ua, 'SummeetApp') !== false;
+}
