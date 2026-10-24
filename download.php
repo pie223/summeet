@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
 /** Download page: the Android app and the open-source code. Open to everyone (logged in or not). */
 
 // Put the real links here when you have them. While a link is empty, its button shows "link coming soon".
-$apkUrl    = '';   // direct download of the .apk file
+$apkUrl    = 'https://github.com/pie223/summeet/releases/latest/download/app-release.apk';   // always the newest release
 $fdroidUrl = '';   // the app's page on F-Droid
 $repoUrl   = 'https://github.com/pie223/summeet';   // the GitHub repository
 $siteUrl   = 'https://summeet.altervista.org';      // where the QR code sends people
@@ -86,9 +86,15 @@ $linkButton = function (string $label, string $url, bool $primary): void {
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(url, side / 2, side - 8);
+        var data = canvas.toDataURL('image/png');
+        // Inside the Android app a normal download does nothing: hand the picture to the app instead.
+        if (window.SummeetApp && typeof window.SummeetApp.savePng === 'function') {
+            window.SummeetApp.savePng(data.split(',')[1], 'summeet-qr.png');
+            return;
+        }
         var link = document.createElement('a');
         link.download = 'summeet-qr.png';
-        link.href = canvas.toDataURL('image/png');
+        link.href = data;
         document.body.appendChild(link);
         link.click();
         link.remove();
