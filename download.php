@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
 /** Download page: the Android app and the open-source code. Open to everyone (logged in or not). */
 
 // Put the real links here when you have them. While a link is empty, its button shows "link coming soon".
-$apkUrl    = 'https://github.com/pie223/summeet/releases/latest/download/app-release.apk';   // always the newest release
+$apkUrl    = 'https://github.com/pie223/summeet/releases/latest/download/summeet.apk';   // always the newest release
 $fdroidUrl = '';   // the app's page on F-Droid
 $repoUrl   = 'https://github.com/pie223/summeet';   // the GitHub repository
 $siteUrl   = 'https://summeet.altervista.org';      // where the QR code sends people
