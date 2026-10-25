@@ -37,7 +37,7 @@ $linkButton = function (string $label, string $url, bool $primary): void {
 <?php endif; ?>
 
 <section class="card card-narrow">
-    <h2>Share Summeet</h2>
+    <?php if (!in_app()): ?><h2>Share Summeet</h2><?php endif; ?>
     <div id="qr-code" style="width:200px; height:200px; margin:0 auto; color:var(--mtn-front);"></div>
     <p class="muted small" id="qr-url" style="text-align:center; word-break:break-all; margin:0.2rem 0 0.9rem;"></p>
     <p style="text-align:center; margin:0;"><button type="button" class="btn btn-ghost btn-sm" id="qr-download">⬇️ Download as PNG</button></p>
