@@ -2,6 +2,8 @@ package io.github.pie223.summeet;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
@@ -12,9 +14,22 @@ import java.io.OutputStream;
 
 public class SummeetBridge {
     private final Context ctx;
+    private long lastOpen = 0;
 
     public SummeetBridge(Context ctx) {
         this.ctx = ctx;
+    }
+
+    /** Opens the Summeet GitHub link in the browser, once (taps within 5 seconds are ignored). */
+    @JavascriptInterface
+    public synchronized void openUrl(String url) {
+        long now = System.currentTimeMillis();
+        if (now - lastOpen < 5000) return;
+        if (url == null || !url.startsWith("https://github.com/pie223/summeet/")) return;
+        lastOpen = now;
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        ctx.startActivity(i);
     }
 
     @JavascriptInterface
@@ -24,7 +39,7 @@ public class SummeetBridge {
             ContentValues values = new ContentValues();
             values.put(MediaStore.Downloads.DISPLAY_NAME, name);
             values.put(MediaStore.Downloads.MIME_TYPE, "image/png");
-            android.net.Uri uri = ctx.getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
+            Uri uri = ctx.getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
             OutputStream out = ctx.getContentResolver().openOutputStream(uri);
             out.write(Base64.decode(base64, Base64.DEFAULT));
             out.close();

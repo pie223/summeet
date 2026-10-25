@@ -83,7 +83,7 @@ $flash = flash_get();
 <?php if (in_app()): ?>
 <div class="update-banner" id="update-banner" hidden>
     <span>A new version of Summeet is available.</span>
-    <a href="https://github.com/pie223/summeet/releases/latest/download/summeet.apk" class="btn btn-sm">Download</a>
+    <a href="https://github.com/pie223/summeet/releases/latest/download/summeet.apk" class="btn btn-sm" id="update-link">Download</a>
     <button type="button" class="update-close" id="update-close" aria-label="Close">&times;</button>
 </div>
 <script>
@@ -100,6 +100,13 @@ $flash = flash_get();
         }
         return false;
     }
+    // Newer app versions open the link themselves, once; older ones use the plain link.
+    document.getElementById('update-link').addEventListener('click', function (e) {
+        if (window.SummeetApp && typeof window.SummeetApp.openUrl === 'function') {
+            e.preventDefault();
+            window.SummeetApp.openUrl(this.href);
+        }
+    });
     document.getElementById('update-close').addEventListener('click', function () {
         bar.hidden = true;
         try { sessionStorage.setItem('updateClosed', '1'); } catch (e) {}
