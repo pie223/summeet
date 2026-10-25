@@ -2,7 +2,17 @@
   "appId": "io.github.pie223.summeet",
   "appName": "Summeet",
   "webDir": "www",
-  "appendUserAgent": "SummeetApp/1.0.2",
+  "backgroundColor": "#f7f9f7",
+  "appendUserAgent": "SummeetApp/1.0.3",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "launchFadeOutDuration": 300,
+      "backgroundColor": "#f7f9f7",
+      "showSpinner": false,
+      "androidScaleType": "CENTER_INSIDE"
+    }
+  },
   "server": {
     "url": "https://summeet.altervista.org/"
   }
