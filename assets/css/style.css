@@ -582,3 +582,7 @@ code {
 .update-banner[hidden] { display: none; }
 .update-banner .btn { background: var(--forest); color: #fff; }
 .update-close { background: none; border: 0; color: var(--forest); font-size: 1.4rem; line-height: 1; cursor: pointer; }
+
+/* GitHub link on the Download page: plain underline */
+.link-highlight { color: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.link-highlight:hover { color: var(--accent); }
