@@ -9,7 +9,7 @@ $fdroidUrl = '';   // the app's page on F-Droid
 $repoUrl   = 'https://github.com/pie223/summeet';   // the GitHub repository
 $siteUrl   = 'https://summeet.altervista.org';      // where the QR code sends people
 
-$pageTitle = 'Download';
+$pageTitle = in_app() ? 'Share' : 'Download';
 require __DIR__ . '/includes/header.php';
 
 /** Prints a button, or a greyed-out "coming soon" button while there is no link yet. */
@@ -22,8 +22,9 @@ $linkButton = function (string $label, string $url, bool $primary): void {
 };
 ?>
 
-<h1>Download</h1>
+<h1><?= in_app() ? 'Share' : 'Download' ?></h1>
 
+<?php if (!in_app()): ?>
 <section class="card card-narrow">
     <h2>Get the app</h2>
     <p class="muted">Summeet for Android.</p>
@@ -33,6 +34,7 @@ $linkButton = function (string $label, string $url, bool $primary): void {
     </p>
     <p class="muted small" style="margin-bottom:0;">We don't surrender to Google Play. <a href="https://keepandroidopen.org/" rel="noopener">Here</a> is one of the many reasons why you can't download us there.</p>
 </section>
+<?php endif; ?>
 
 <section class="card card-narrow">
     <h2>Share Summeet</h2>
