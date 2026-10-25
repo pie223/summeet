@@ -1,5 +1,16 @@
 <?php
 declare(strict_types=1);
+
+// Keep people logged in for 30 days (the app's background notifications need a login that lasts).
+$sessionDays = 30;
+ini_set('session.gc_maxlifetime', (string) (86400 * $sessionDays));
+session_set_cookie_params([
+    'lifetime' => 86400 * $sessionDays,
+    'path'     => '/',
+    'secure'   => !empty($_SERVER['HTTPS']),
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);
 session_start();
 
 require_once __DIR__ . '/../config/db.php';
