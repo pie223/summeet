@@ -3,7 +3,7 @@
   "appName": "Summeet",
   "webDir": "www",
   "backgroundColor": "#f7f9f7",
-  "appendUserAgent": "SummeetApp/1.1.2",
+  "appendUserAgent": "SummeetApp/1.1.3",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 2000,
