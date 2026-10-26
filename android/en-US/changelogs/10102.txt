@@ -1,0 +1,1 @@
+Added native Android notifications for new chat messages and hike requests.
